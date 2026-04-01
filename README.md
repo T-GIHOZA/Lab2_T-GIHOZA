@@ -1,67 +1,50 @@
-# Lab 2: The Social Media Data Detective
+# Lab 2: Data Detective
 
-So this lab is basically about analyzing a Twitter dataset. The goal is to clean up messy data, find the most popular post, rank tweets, and search for keywords.
+This is a Twitter dataset analyzer. It cleans up messy data, finds the most popular tweet, sort everything by likes, and then allow user to narrow down their research in the dataset using keywords.
 
-## What's in here
+## What the scripts do
 
-The project has two parts:
+**data-detective.py** — Runs 4 quests:
+1. Cleans the data (removes bad rows, fills in missing numbers)
+2. Finds the viral tweet (highest likes)
+3. Sorts all tweets by likes
+4. Lets you search for a keyword and shows matching tweets
 
-**data-detective.py** - This does all the heavy lifting. It runs through 4 "quests":
-1. First, it cleans the data. If tweets are missing text or numbers, it either removes them or fills in 0s.
-2. Then it finds the viral post (the one with the most likes) by comparing each tweet.
-3. After that, it sorts all tweets by likes using bubble sort.
-4. Finally, it searches for a keyword you give it and shows you which tweets contain that word.
+**feed-analyzer.sh** — Shows you which users posted the most
 
-**feed-analyzer.sh** - This is just bash piping stuff together. It counts which Twitter users posted the most and shows you the top 5.
+## How to use it
 
-## How to run it
-
-The simplest way is just:
-```
+```bash
 python data-detective.py
 ```
 
-This loads the twitter dataset and searches for "Python" by default. If you want to search for something else or use a different CSV file:
-```
-python data-detective.py --csv twitter_dataset.csv --search "trending"
+This will run through all 4 quests. When it gets to the search part, it'll ask you what keyword you want to search for.
+
+You can also specify the CSV file if you want:
+```bash
+python data-detective.py --csv your_file.csv
 ```
 
 For the bash script:
-```
+```bash
 bash feed-analyzer.sh
 ```
 
-It spits out the top 5 most active users and saves the results to a log file so you can see what happened each time you ran it.
+It shows top 5 users and logs the results each time you run it.
 
-## About the sorting
+## The sorting thing
 
-The hardest part of this lab was probably the sorting. I used bubble sort - you compare pairs of tweets next to each other. If the one on the left has fewer likes than the one on the right, you swap them. You keep doing this until everything is in the right order. It works and it shows you actually understand how sorting works.
+Used bubble sort because we can't use `.sort()`. You compare pairs and swap them if they're out of order. Keep doing it until everything's sorted. Simple but it works.
 
-## Error handling
+**Note:** With a large dataset, the sorting will take a bit because bubble sort has to buffer through millions of comparisons. You'll see a loading indicator while it's running. Just be patient and let it finish.
 
-I added some stuff so it doesn't just crash if something goes wrong:
-- If the CSV file is missing, it asks you to provide the correct path (you get 3 tries)
-- If the data has weird numbers (like "abc" instead of a number), it treats it as 0
-- If you hit Ctrl+C, the program shuts down cleanly instead of being ugly about it
-- If the CSV is empty or doesn't have a header, it tells you what's wrong
+## Stuff that won't crash it
+
+- Missing file? It asks you to try again (3 times max)
+- Bad numbers in the data? Treats them as 0
+- Hit Ctrl+C? It asks if you're sure before exiting
+- Empty CSV or no headers? Tells you what's wrong
 
 ## What you need
 
-Just Python 3 and Bash. No extra packages to install. Both scripts use stuff that comes with Python and Bash by default.
-
-## Testing it out
-
-You can try it like this:
-```
-python data-detective.py --csv twitter_dataset.csv --search "trending"
-bash feed-analyzer.sh
-cat feed-analyzer.log
-```
-
-The log file keeps a record of every time you ran the analyzer, so you can come back and check what you got before.
-
-## Notes
-
-- When you search, it only shows the first 5 results to keep the output from getting too messy
-- The top 10 most-liked tweets are also displayed after the sort
-- Everything uses basic list operations and loops
+Python 3 and Bash. That's it. No extra packages.
