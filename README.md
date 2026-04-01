@@ -32,19 +32,20 @@ bash feed-analyzer.sh
 
 It shows top 5 users and logs the results each time you run it.
 
-## The sorting thing
+## The sorting algorithm
 
-Used bubble sort because we can't use `.sort()`. You compare pairs and swap them if they're out of order. Keep doing it until everything's sorted. Simple but it works.
+Used bubble sort because we can't use `.sort()`. It compares pairs and swap them if they're out of order. Keeps doing it until everything's sorted. Simple but it works.
 
-**Note:** With a large dataset, the sorting will take a bit because bubble sort has to buffer through millions of comparisons. You'll see a loading indicator while it's running. Just be patient and let it finish.
+**Note:** With a large dataset, the sorting will take a bit because bubble sort has to buffer through millions of comparisons. You'll see a loading indicator while it's running.
 
-## Stuff that won't crash it
+## Error handling
 
 - Missing file? It asks you to try again (3 times max)
 - Bad numbers in the data? Treats them as 0
 - Hit Ctrl+C? It asks if you're sure before exiting
 - Empty CSV or no headers? Tells you what's wrong
 
-## What you need
+## Dependencies
 
-Python 3 and Bash. That's it. No extra packages.
+- Python 3
+- Bash
