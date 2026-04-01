@@ -4,13 +4,13 @@ This is a Twitter dataset analyzer. It cleans up messy data, finds the most popu
 
 ## What the scripts do
 
-**data-detective.py** — Runs 4 quests:
+**data-detective.py** - Runs 4 quests:
 1. Cleans the data (removes bad rows, fills in missing numbers)
 2. Finds the viral tweet (highest likes)
 3. Sorts all tweets by likes
 4. Lets you search for a keyword and shows matching tweets
 
-**feed-analyzer.sh** — Shows you which users posted the most
+**feed-analyzer.sh** - Shows you which users posted the most
 
 ## How to use it
 
